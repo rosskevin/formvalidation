@@ -10,6 +10,7 @@ __Bug Fixes__
 
 __Document__
 * #38: Add [Loading and saving data in a modal](http://formvalidation.io/examples/loading-saving-data-modal/) example
+* Add [Conditional validation](http://formvalidation.io/examples/conditional-validation/) example
 
 ## v0.6.1 (2015-02-24)
 
