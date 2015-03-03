@@ -7,6 +7,7 @@ __New Features__
 
 __Bug Fixes__
 * The [updateMessage()](http://formvalidation.io/api/#update-message) method must return the plugin instance for chaining
+* When calling [resetField(true)](http://formvalidation.io/api/#reset-field) and [resetForm(true)](http://formvalidation.io/api/#reset-form) methods, the field need be reset value before updating the status
 
 __Document__
 * #38: Add [Loading and saving data in a modal](http://formvalidation.io/examples/loading-saving-data-modal/) example

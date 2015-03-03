@@ -2035,13 +2035,13 @@ if (typeof jQuery === 'undefined') {
                 }
             }
 
-            // Mark field as not validated yet
-            this.updateStatus(field, this.STATUS_NOT_VALIDATED);
-
             if (resetValue) {
                 var type = $fields.attr('type');
                 ('radio' === type || 'checkbox' === type) ? $fields.prop('checked', false).removeAttr('selected') : $fields.val('');
             }
+
+            // Mark field as not validated yet
+            this.updateStatus(field, this.STATUS_NOT_VALIDATED);
 
             return this;
         },

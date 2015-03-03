@@ -2,7 +2,7 @@
  * FormValidation (http://formvalidation.io)
  * The best jQuery plugin to validate form fields. Support Bootstrap, Foundation, Pure, SemanticUI, UIKit and custom frameworks
  *
- * @version     v0.6.2-dev, built on 2015-03-01 3:29:54 PM
+ * @version     v0.6.2-dev, built on 2015-03-03 8:19:16 PM
  * @author      https://twitter.com/nghuuphuoc
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
@@ -2035,13 +2035,13 @@ if (typeof jQuery === 'undefined') {
                 }
             }
 
-            // Mark field as not validated yet
-            this.updateStatus(field, this.STATUS_NOT_VALIDATED);
-
             if (resetValue) {
                 var type = $fields.attr('type');
                 ('radio' === type || 'checkbox' === type) ? $fields.prop('checked', false).removeAttr('selected') : $fields.val('');
             }
+
+            // Mark field as not validated yet
+            this.updateStatus(field, this.STATUS_NOT_VALIDATED);
 
             return this;
         },
