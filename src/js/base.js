@@ -1405,39 +1405,6 @@ if (typeof jQuery === 'undefined') {
                         break;
 
                     case this.STATUS_VALID:
-                        isValidating   = ($allErrors.filter('[data-' + ns + '-result="' + this.STATUS_VALIDATING +'"]').length > 0);
-                        isNotValidated = ($allErrors.filter('[data-' + ns + '-result="' + this.STATUS_NOT_VALIDATED +'"]').length > 0);
-
-                        // If the field is valid (passes all validators)
-                        isValidField   = (isValidating || isNotValidated)     // There are some validators that have not done
-                                       ? null
-                                       : ($allErrors.filter('[data-' + ns + '-result="' + this.STATUS_VALID +'"]').length
-                                        + $allErrors.filter('[data-' + ns + '-result="' + this.STATUS_IGNORED +'"]').length === $allErrors.length); // All validators are completed
-
-                        $field.removeClass(this.options.control.valid).removeClass(this.options.control.invalid);
-
-                        if (isValidField === true) {
-                            this.disableSubmitButtons(this.isValid() === false);
-                            $field.addClass(this.options.control.valid);
-                        } else if (isValidField === false) {
-                            this.disableSubmitButtons(true);
-                            $field.addClass(this.options.control.invalid);
-                        }
-
-                        if ($icon) {
-                            $icon
-                                .removeClass(this.options.icon.invalid).removeClass(this.options.icon.validating).removeClass(this.options.icon.valid)
-                                .addClass(isValidField === null ? '' : (isValidField ? this.options.icon.valid
-                                                                                     : (isValidating ? this.options.icon.validating : this.options.icon.invalid)))
-                                .show();
-                        }
-
-                        var isValidContainer = this.isValidContainer($parent);
-                        if (isValidContainer !== null) {
-                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid).addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
-                        }
-                        break;
-
                     // Treat ignored fields like they are valid with some specialties
                     case this.STATUS_IGNORED:
                         isValidating   = ($allErrors.filter('[data-' + ns + '-result="' + this.STATUS_VALIDATING +'"]').length > 0);
@@ -1453,12 +1420,37 @@ if (typeof jQuery === 'undefined') {
 
                         if (isValidField === true) {
                             this.disableSubmitButtons(this.isValid() === false);
+
+                            // Don't add success class if the field is ignored
+                            if (status !== this.STATUS_IGNORED) {
+                                $field.addClass(this.options.control.valid);
+                            }
                         } else if (isValidField === false) {
                             this.disableSubmitButtons(true);
+
+                            // Don't add error class if the field is ignored
+                            if (status !== this.STATUS_IGNORED) {
+                                $field.addClass(this.options.control.invalid);
+                            }
                         }
 
                         if ($icon) {
                             $icon.removeClass(this.options.icon.invalid).removeClass(this.options.icon.validating).removeClass(this.options.icon.valid);
+
+                            // Don't show the icon if the field is ignored
+                            if (status !== this.STATUS_IGNORED) {
+                                $icon
+                                    .addClass(isValidField === null
+                                        ? ''
+                                        : (isValidField ? this.options.icon.valid
+                                                        : (isValidating ? this.options.icon.validating : this.options.icon.invalid)))
+                                    .show();
+                            }
+                        }
+
+                        var isValidContainer = this.isValidContainer($parent);
+                        if (isValidContainer !== null) {
+                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid).addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
                         }
                         break;
 
