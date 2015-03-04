@@ -8307,7 +8307,11 @@ describe('vat', function() {
         this.fv.updateOption('vat', 'vat', 'country', 'ES');
 
         // Valid samples
-        var validSamples = ['ES54362315K', 'ESX2482300W', 'ESX5253868R', 'ESM1234567L', 'ESJ99216582', 'ESB58378431', 'ESB64717838', '54362315K', 'X2482300W', 'X5253868R', 'M1234567L', 'J99216582'];
+        var validSamples = [
+            'ES54362315K', 'ESX2482300W', 'ESX5253868R', 'ESM1234567L', 'ESJ99216582', 'ESB58378431',
+            'ESB64717838', '54362315K', 'X2482300W', 'X5253868R', 'M1234567L', 'J99216582',
+            'ESR5000274J', 'ESQ5000274J', 'ESB78640570', 'ES50222711A'
+        ];
         for (var i in validSamples) {
             this.fv.resetForm();
             this.$vat.val(validSamples[i]);

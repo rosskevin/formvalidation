@@ -6,6 +6,7 @@ __New Features__
 * Add STATUS_IGNORED status. The field will be ignored for the current validation if the validator returns null/undefined
 
 __Bug Fixes__
+* #47: Spanish VAT validator doesn't work with some examples
 * The [updateMessage()](http://formvalidation.io/api/#update-message) method must return the plugin instance for chaining
 * When calling [resetField(true)](http://formvalidation.io/api/#reset-field) and [resetForm(true)](http://formvalidation.io/api/#reset-form) methods, the field need be reset value before updating the status
 

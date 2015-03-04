@@ -624,6 +624,9 @@
                             sum += temp;
                         }
                         sum = 10 - sum % 10;
+                        if (sum === 10) {
+                            sum = 0;
+                        }
                         return (sum + '' === value.substr(8, 1) || 'JABCDEFGHI'[sum] === value.substr(8, 1));
                     }
 
