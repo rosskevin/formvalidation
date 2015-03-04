@@ -7,7 +7,7 @@ __New Features__
 
 __Bug Fixes__
 * #47: Spanish VAT validator doesn't work with some examples
-* Don't update the ```options``` parameter when calling the ```addField(field, options)``` method
+* #48: Override the options when adding field
 * The [updateMessage()](http://formvalidation.io/api/#update-message) method must return the plugin instance for chaining
 * When calling [resetField(true)](http://formvalidation.io/api/#reset-field) and [resetForm(true)](http://formvalidation.io/api/#reset-form) methods, the field need be reset value before updating the status
 

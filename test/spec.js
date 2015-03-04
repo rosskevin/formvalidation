@@ -540,7 +540,8 @@ describe('dynamic fields', function() {
         expect(this.fv.isValid()).toBeTruthy();
     });
 
-    it('do not update the validator options', function() {
+    // support#48
+    it('Override the options when adding field', function() {
         var options = {
             validators: {
                 stringLength: {
@@ -555,7 +556,7 @@ describe('dynamic fields', function() {
             .formValidation()
             .formValidation('addField', 'userName', options);
 
-        // The options now includes the notEmpty validator (userName field have required attribute)
+        // The options shouldn't contain the notEmpty validator (userName field have required attribute)
         expect(options.validators.notEmpty).toBeUndefined();
     })
 });
