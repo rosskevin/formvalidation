@@ -183,8 +183,8 @@ $(document).ready(function() {
                 }
             }
         })
-        .on('success.field.fv', function(e, data) {
-            if (data.field === 'ccNumber') {
+        .on('success.validator.fv', function(e, data) {
+            if (data.field === 'ccNumber' && data.validator === 'creditCard') {
                 var $icon = data.element.data('fv.icon');
                 switch (data.result.type) {
                     case 'AMERICAN_EXPRESS':
