@@ -2,7 +2,7 @@
  * FormValidation (http://formvalidation.io)
  * The best jQuery plugin to validate form fields. Support Bootstrap, Foundation, Pure, SemanticUI, UIKit and custom frameworks
  *
- * @version     v0.6.2-dev, built on 2015-03-04 8:29:05 PM
+ * @version     v0.6.2-dev, built on 2015-03-04 9:31:32 PM
  * @author      https://twitter.com/nghuuphuoc
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
@@ -1450,7 +1450,12 @@ if (typeof jQuery === 'undefined') {
 
                         var isValidContainer = this.isValidContainer($parent);
                         if (isValidContainer !== null) {
-                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid).addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
+                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid);
+
+                            // Don't add success/error class to the container if the field is ignored
+                            if (status !== this.STATUS_IGNORED) {
+                                $parent.addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
+                            }
                         }
                         break;
 

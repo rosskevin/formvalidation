@@ -1450,7 +1450,12 @@ if (typeof jQuery === 'undefined') {
 
                         var isValidContainer = this.isValidContainer($parent);
                         if (isValidContainer !== null) {
-                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid).addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
+                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid);
+
+                            // Don't add success/error class to the container if the field is ignored
+                            if (status !== this.STATUS_IGNORED) {
+                                $parent.addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
+                            }
                         }
                         break;
 
