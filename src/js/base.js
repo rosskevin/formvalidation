@@ -1669,7 +1669,7 @@ if (typeof jQuery === 'undefined') {
 
                 // Try to parse the options from HTML attributes
                 var opts = this._parseOptions($field);
-                opts = (opts === null) ? options : $.extend(true, options, opts);
+                opts = (opts === null) ? options : $.extend({}, options, opts);
 
                 this.options.fields[field] = $.extend(true, this.options.fields[field], opts);
 

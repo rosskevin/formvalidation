@@ -475,6 +475,9 @@ describe('dynamic fields', function() {
         $([
             '<form class="form-horizontal" id="dynamicForm">',
                 '<div class="form-group">',
+                    '<input type="text" name="userName" class="form-control" required />',
+                '</div>',
+                '<div class="form-group">',
                     '<input type="text" name="fullName" class="form-control" />',
                 '</div>',
             '</form>'
@@ -482,20 +485,14 @@ describe('dynamic fields', function() {
 
         $('#dynamicForm').formValidation({
             fields: {
-                fullName: {
+                userName: {
                     validators: {
                         notEmpty: {
-                            message: 'The full name is required and cannot be empty'
-                        },
-                        stringLength: {
-                            min: 8,
-                            max: 40,
-                            message: 'The full name must be more than %s and less than %s characters long'
+                            message: 'The user name is required and cannot be empty'
                         },
                         regexp: {
-                            enabled: false,
-                            regexp: /^[a-zA-Z\s]+$/,
-                            message: 'The full name can only consist of alphabetical, number, and space'
+                            regexp: /^[a-zA-Z]+$/,
+                            message: 'The user name can only consist of alphabetical, number'
                         }
                     }
                 },
@@ -511,7 +508,7 @@ describe('dynamic fields', function() {
         });
 
         this.fv        = $('#dynamicForm').data('formValidation');
-        this.$fullName = this.fv.getFieldElements('fullName');
+        this.$userName = this.fv.getFieldElements('userName');
     });
 
     afterEach(function() {
@@ -529,7 +526,7 @@ describe('dynamic fields', function() {
 
         this.fv.addField('email');
 
-        this.$fullName.val('Phuoc Nguyen');
+        this.$userName.val('FormValidation');
 
         $email.val('not valid@email');
         this.fv.validate();
@@ -542,6 +539,25 @@ describe('dynamic fields', function() {
         expect(this.fv.isValidField('email')).toBeTruthy();
         expect(this.fv.isValid()).toBeTruthy();
     });
+
+    it('do not update the validator options', function() {
+        var options = {
+            validators: {
+                stringLength: {
+                    min: 6,
+                    max: 20
+                }
+            }
+        };
+
+        $('#dynamicForm')
+            .formValidation('destroy')
+            .formValidation()
+            .formValidation('addField', 'userName', options);
+
+        // The options now includes the notEmpty validator (userName field have required attribute)
+        expect(options.validators.notEmpty).toBeUndefined();
+    })
 });
 
 describe('enable validators', function() {
