@@ -5872,7 +5872,10 @@ describe('id', function() {
         }
 
         // Invalid samples
-        var invalidSamples = ['231.002.999-00', '000.000.000-00', '111.111.111-11', '23100299900', '00000000000', '11111111111'];
+        var invalidSamples = [
+            '39053344705000', '390533447050000', '1114447773500000000',  // support#50
+            '231.002.999-00', '000.000.000-00', '111.111.111-11', '23100299900', '00000000000', '11111111111'
+        ];
         for (i in invalidSamples) {
             this.fv.resetForm();
             this.$id.val(invalidSamples[i]);
