@@ -16,6 +16,7 @@ __Document__
 * #38: Add [Loading and saving data in a modal](http://formvalidation.io/examples/loading-saving-data-modal/) example
 * #43: Add [Playing with Bootstrap Combobox](http://formvalidation.io/examples/bootstrap-combobox/) example
 * #45: Update the [Showing card icon](http://formvalidation.io/validators/creditCard/#showing-card-icon) example
+* #49: Add [Switching validators on the same field](http://formvalidation.io/examples/switching-validators-same-field/) example
 * Add [Conditional validation](http://formvalidation.io/examples/conditional-validation/) example
 * Fix the [Clearing field when clicking the icon](http://formvalidation.io/examples/clearing-field-when-clicking-icon/) example
 
