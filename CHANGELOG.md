@@ -14,8 +14,9 @@ __Bug Fixes__
 __Document__
 * #38: Add [Loading and saving data in a modal](http://formvalidation.io/examples/loading-saving-data-modal/) example
 * #43: Add [Playing with Bootstrap Combobox](http://formvalidation.io/examples/bootstrap-combobox/) example
-* #45: Update [Showing card icon](http://formvalidation.io/validators/creditCard/#showing-card-icon) example
+* #45: Update the [Showing card icon](http://formvalidation.io/validators/creditCard/#showing-card-icon) example
 * Add [Conditional validation](http://formvalidation.io/examples/conditional-validation/) example
+* Fix the [Clearing field when clicking the icon](http://formvalidation.io/examples/clearing-field-when-clicking-icon/) example
 
 ## v0.6.1 (2015-02-24)
 
