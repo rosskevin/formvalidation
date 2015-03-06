@@ -2,7 +2,7 @@
  * FormValidation (http://formvalidation.io)
  * The best jQuery plugin to validate form fields. Support Bootstrap, Foundation, Pure, SemanticUI, UIKit and custom frameworks
  *
- * @version     v0.6.2-dev, built on 2015-03-05 11:22:33 AM
+ * @version     v0.6.2-dev, built on 2015-03-06 3:38:02 PM
  * @author      https://twitter.com/nghuuphuoc
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
@@ -3310,7 +3310,9 @@ if (typeof jQuery === 'undefined') {
             // Determine the separator
             var separator = options.separator;
             if (!separator) {
-                separator = (date.indexOf('/') !== -1) ? '/' : ((date.indexOf('-') !== -1) ? '-' : null);
+                separator = (date.indexOf('/') !== -1)
+                            ? '/'
+                            : ((date.indexOf('-') !== -1) ? '-' : ((date.indexOf('.') !== -1) ? '.' : null));
             }
             if (separator === null || date.indexOf(separator) === -1) {
                 return {

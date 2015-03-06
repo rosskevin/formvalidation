@@ -80,7 +80,9 @@
             // Determine the separator
             var separator = options.separator;
             if (!separator) {
-                separator = (date.indexOf('/') !== -1) ? '/' : ((date.indexOf('-') !== -1) ? '-' : null);
+                separator = (date.indexOf('/') !== -1)
+                            ? '/'
+                            : ((date.indexOf('-') !== -1) ? '-' : ((date.indexOf('.') !== -1) ? '.' : null));
             }
             if (separator === null || date.indexOf(separator) === -1) {
                 return {

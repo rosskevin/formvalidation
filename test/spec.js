@@ -3848,6 +3848,44 @@ describe('date', function() {
         expect(this.fv.isValid()).toEqual(false);
     });
 
+    // support#44
+    // Support dot (.) as separator for European countries
+    it('support dot separator', function() {
+        this.fv.updateOption('date', 'date', 'format', 'DD.MM.YYYY');
+
+        this.$date.val('05.11.2014');
+        this.fv.validate();
+        expect(this.fv.isValid()).toBeTruthy();
+
+        this.fv.resetForm();
+        this.$date.val('5.1.2014');
+        this.fv.validate();
+        expect(this.fv.isValid()).toBeTruthy();
+
+        // Invalid date
+        this.fv.resetForm();
+        this.$date.val('32.11.2014');
+        this.fv.validate();
+        expect(this.fv.isValid()).toEqual(false);
+
+        this.fv.resetForm();
+        this.$date.val('29.02.2001');
+        this.fv.validate();
+        expect(this.fv.isValid()).toEqual(false);
+
+        // Invalid month
+        this.fv.resetForm();
+        this.$date.val('5.14.2014');
+        this.fv.validate();
+        expect(this.fv.isValid()).toEqual(false);
+
+        // Invalid year
+        this.fv.resetForm();
+        this.$date.val('05.11.14');
+        this.fv.validate();
+        expect(this.fv.isValid()).toEqual(false);
+    });
+
     it('number of days in February', function() {
         this.fv.updateOption('date', 'date', 'format', 'YYYY/MM/DD');
 

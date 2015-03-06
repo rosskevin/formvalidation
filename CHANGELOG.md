@@ -5,6 +5,9 @@
 __New Features__
 * Add STATUS_IGNORED status. The field will be ignored for the current validation if the validator returns null/undefined
 
+__Improvements__
+* #44: [date](http://formvalidation.io/validators/date/) validator supports dot (.) separator for European countries
+
 __Bug Fixes__
 * #47: Spanish VAT validator doesn't work with some examples
 * #48: Override the options when adding field
