@@ -1405,8 +1405,7 @@ if (typeof jQuery === 'undefined') {
                         break;
 
                     case this.STATUS_VALID:
-                    // Treat ignored fields like they are valid with some specialties
-                    case this.STATUS_IGNORED:
+                    case this.STATUS_IGNORED:       // Treat ignored fields like they are valid with some specialties
                         isValidating   = ($allErrors.filter('[data-' + ns + '-result="' + this.STATUS_VALIDATING +'"]').length > 0);
                         isNotValidated = ($allErrors.filter('[data-' + ns + '-result="' + this.STATUS_NOT_VALIDATED +'"]').length > 0);
 
@@ -1420,38 +1419,32 @@ if (typeof jQuery === 'undefined') {
 
                         if (isValidField === true) {
                             this.disableSubmitButtons(this.isValid() === false);
-
-                            // Don't add success class if the field is ignored
-                            if (status !== this.STATUS_IGNORED) {
+                            if (status === this.STATUS_VALID) {
                                 $field.addClass(this.options.control.valid);
                             }
                         } else if (isValidField === false) {
                             this.disableSubmitButtons(true);
-
-                            // Don't add error class if the field is ignored
-                            if (status !== this.STATUS_IGNORED) {
+                            if (status === this.STATUS_VALID) {
                                 $field.addClass(this.options.control.invalid);
                             }
                         }
 
                         if ($icon) {
-                            $icon.removeClass(this.options.icon.invalid).removeClass(this.options.icon.validating).removeClass(this.options.icon.valid);
-
-                            // Don't show the icon if the field is ignored
-                            if (status !== this.STATUS_IGNORED) {
-                                $icon
-                                    .addClass(isValidField === null
-                                        ? ''
-                                        : (isValidField ? this.options.icon.valid
-                                                        : (isValidating ? this.options.icon.validating : this.options.icon.invalid)))
-                                    .show();
+                            $icon.removeClass(this.options.icon.invalid).removeClass(this.options.icon.validating).removeClass(this.options.icon.valid)
+                            if (status === this.STATUS_VALID) {
+                                $icon.addClass(isValidField === null
+                                        ? '' : (isValidField ? this.options.icon.valid : (isValidating ? this.options.icon.validating : this.options.icon.invalid)))
+                                     .show();
                             }
                         }
 
                         var isValidContainer = this.isValidContainer($parent);
-                        if (status !== this.STATUS_IGNORED && isValidContainer !== null) {
-                            // Don't add success/error class to the container if the field is ignored
-                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid).addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
+                        if (isValidContainer !== null) {
+                            $parent.removeClass(this.options.row.valid).removeClass(this.options.row.invalid);
+
+                            if (status === this.STATUS_VALID || $allErrors.length > 1) {
+                                $parent.addClass(isValidContainer ? this.options.row.valid : this.options.row.invalid);
+                            }
                         }
                         break;
 
