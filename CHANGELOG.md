@@ -22,6 +22,7 @@ __Document__
 * #49: Add [Switching validators on the same field](http://formvalidation.io/examples/switching-validators-same-field/) example
 * Add [Conditional validation](http://formvalidation.io/examples/conditional-validation/) example
 * Fix the [Clearing field when clicking the icon](http://formvalidation.io/examples/clearing-field-when-clicking-icon/) example
+* Update the [iCheck](http://formvalidation.io/examples/icheck/) example to support mobile browsers
 
 ## v0.6.1 (2015-02-24)
 
