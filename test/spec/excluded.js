@@ -1,3 +1,9 @@
+function excludeField($field, validator) {
+    return ($field.attr('name') === 'username')
+                                ? false     // Don't exclude the username field
+                                : true;     // Exclude the email field
+}
+
 describe('excluded', function() {
     beforeEach(function() {
         $([
@@ -148,5 +154,75 @@ describe('excluded', function() {
         this.$email.val('invalid#email.com');
         this.fv.validate();
         expect(this.fv.isValid()).toBeTruthy();
+    });
+
+    it('excluded field callback programmatically', function() {
+        this.fv.destroy();
+        $('#excludedForm').removeAttr('data-fv-excluded');
+
+        $('#excludedForm').formValidation({
+            fields: {
+                username: {
+                    excluded: function($field, validator) {
+                        return true;
+                    }
+                }
+            }
+        });
+
+        this.fv        = $('#excludedForm').formValidation().data('formValidation');
+        this.$username = this.fv.getFieldElements('username');
+        this.$email    = this.fv.getFieldElements('email');
+
+        this.$username.val('');
+        this.$email.val('valid@email.com');
+        this.fv.validate();
+        expect(this.fv.isValidField('username')).toEqual(true);
+    });
+
+    it('excluded field callback as a string', function() {
+        this.fv.destroy();
+        $('#excludedForm').removeAttr('data-fv-excluded');
+
+        $('#excludedForm').formValidation({
+            fields: {
+                username: {
+                    excluded: 'excludeField'
+                },
+                email: {
+                    excluded: 'excludeField'
+                }
+            }
+        });
+
+        this.fv        = $('#excludedForm').formValidation().data('formValidation');
+        this.$username = this.fv.getFieldElements('username');
+        this.$email    = this.fv.getFieldElements('email');
+
+        this.$username.val('');
+        this.$email.val('invalid email address');
+        this.fv.validate();
+        expect(this.fv.isValidField('username')).toEqual(false);
+        expect(this.fv.isValidField('email')).toEqual(true);
+    });
+
+    it('excluded field callback declarative', function() {
+        this.fv.destroy();
+        $('#excludedForm')
+            .removeAttr('data-fv-excluded')
+            .find('[name="username"], [name="email"]')
+                .attr('data-fv-excluded', 'excludeField')
+                .end()
+            .formValidation();
+
+        this.fv        = $('#excludedForm').formValidation().data('formValidation');
+        this.$username = this.fv.getFieldElements('username');
+        this.$email    = this.fv.getFieldElements('email');
+
+        this.$username.val('');
+        this.$email.val('invalid email address');
+        this.fv.validate();
+        expect(this.fv.isValidField('username')).toEqual(false);
+        expect(this.fv.isValidField('email')).toEqual(true);
     });
 });

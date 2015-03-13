@@ -2,7 +2,7 @@
  * FormValidation (http://formvalidation.io)
  * The best jQuery plugin to validate form fields. Support Bootstrap, Foundation, Pure, SemanticUI, UIKit and custom frameworks
  *
- * @version     v0.6.2-dev, built on 2015-03-06 6:26:36 PM
+ * @version     v0.6.2-dev, built on 2015-03-13 7:58:23 AM
  * @author      https://twitter.com/nghuuphuoc
  * @copyright   (c) 2013 - 2015 Nguyen Huu Phuoc
  * @license     http://formvalidation.io/license/
@@ -490,6 +490,13 @@ if (typeof jQuery === 'undefined') {
                 case (!!field && this.options.fields && this.options.fields[field] && (this.options.fields[field].excluded === 'false' || this.options.fields[field].excluded === false)):
                 case (excludedAttr === 'false'):
                     return false;
+
+                case (!!field && this.options.fields && this.options.fields[field] && 'function' === typeof this.options.fields[field].excluded):
+                    return this.options.fields[field].excluded.call(this, $field, this);
+
+                case (!!field && this.options.fields && this.options.fields[field] && 'string' === typeof this.options.fields[field].excluded):
+                case (excludedAttr):
+                    return FormValidation.Helper.call(this.options.fields[field].excluded, [$field, this]);
 
                 default:
                     if (this.options.excluded) {

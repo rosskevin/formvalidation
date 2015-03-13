@@ -491,6 +491,13 @@ if (typeof jQuery === 'undefined') {
                 case (excludedAttr === 'false'):
                     return false;
 
+                case (!!field && this.options.fields && this.options.fields[field] && 'function' === typeof this.options.fields[field].excluded):
+                    return this.options.fields[field].excluded.call(this, $field, this);
+
+                case (!!field && this.options.fields && this.options.fields[field] && 'string' === typeof this.options.fields[field].excluded):
+                case (excludedAttr):
+                    return FormValidation.Helper.call(this.options.fields[field].excluded, [$field, this]);
+
                 default:
                     if (this.options.excluded) {
                         // Convert to array first

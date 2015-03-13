@@ -7,6 +7,7 @@ __New Features__
 
 __Improvements__
 * #44: [date](http://formvalidation.io/validators/date/) validator supports dot (.) separator for European countries
+* #62: Allow to use callback for field's [excluded](http://formvalidation.io/settings/#field-excluded) option
 
 __Bug Fixes__
 * #47: Spanish VAT validator doesn't work with some examples
