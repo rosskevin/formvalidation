@@ -1,4 +1,4 @@
-# FormValidation - [v0.6.1](http://formvalidation.io/download/)
+# FormValidation - [Download](http://formvalidation.io/download/)
 
 | Quick links                                                                      |
 |----------------------------------------------------------------------------------|
@@ -72,8 +72,7 @@ See the [official website](http://formvalidation.io) for the full list of featur
 
 ## Download
 
-* Latest version: [v0.6.1](http://formvalidation.io/download/), released on 2015-02-24
-* For older versions, look at the [Releases](https://github.com/formvalidation/formvalidation/releases) page
+* Latest version: http://formvalidation.io/download/
 * Release History: Look at the [Change Log](CHANGELOG.md)
 
 ## Documentation
