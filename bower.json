@@ -1,0 +1,16 @@
+{
+  "name": "formvalidation",
+  "description": "Best jQuery validation plugin.",
+  "version": "1.0.4",
+  "main": [
+    "./dist/css/formValidation.css",
+    "./dist/js/formValidation.js",
+    "./dist/js/framework/**/**"
+  ],
+  "author": "Form Validation",
+  "dependencies": {
+    "jquery": ">=1.9.1"
+  },
+  "keywords": ["form", "validation", "jquery"],
+  "homepage": "https://github.com/formvalidation"
+}
